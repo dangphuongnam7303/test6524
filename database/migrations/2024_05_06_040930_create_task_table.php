@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('task', function (Blueprint $table) {
             $table->id();
-            $table->integer('project_id');
+            $table->integer('project_id');//trong project nào
             $table->string('name');
             $table->dateTime('started_at');
             $table->dateTime('ended_at');
             $table->integer('estimate');
-            $table->integer('status_id');
-            $table->double('complete');
+            $table->integer('status_id');// trạng thái
+            $table->double('complete');// hoàn thành bao nhiêu %
+            $table->integer('implementer');// người thực hiện task
             $table->timestamps();
             $table->softDeletes();
         });
