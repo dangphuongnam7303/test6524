@@ -14,13 +14,13 @@ return new class extends Migration
     {
         Schema::create('project', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('name');
-            $table->foreignId('project_category_id')->constrained('project_category');
-            $table->time('start');
-            $table->time('end');
-            $table->string('leader');
-            $table->integer('member');
+            $table->integer('project_category_id');
+            $table->dateTime('started_at');
+            $table->dateTime('ended_at');
+            $table->integer('leader');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -29,8 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Schema::dropIfExists('project');
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 };

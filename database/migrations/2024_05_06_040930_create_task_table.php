@@ -11,11 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('member', function (Blueprint $table) {
+        Schema::create('task', function (Blueprint $table) {
             $table->id();
+            $table->integer('project_id');
             $table->string('name');
-            $table->string('phone');
-            $table->string('address')->nullable();
+            $table->dateTime('started_at');
+            $table->dateTime('ended_at');
+            $table->integer('estimate');
+            $table->integer('status_id');
+            $table->double('complete');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -26,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('member');
+        Schema::dropIfExists('task');
     }
 };
